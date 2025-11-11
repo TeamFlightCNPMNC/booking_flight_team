@@ -1,0 +1,204 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: monospace;
+  font-size: 17px;
+  line-height: 1.5;
+  font-weight: 400;
+
+  transition: all;
+  animation-duration: 30ms;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-image: url("https://ik.imagekit.io/tvlk/image/imageResource/2023/09/27/1695776209619-17a750c3f514f7a8cccde2d0976c902a.png");
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@supports (-moz-appearance: none) {
+  .appearance-none {
+    -moz-appearance: none;
+    appearance: none;
+  }
+}
+
+@supports (-moz-appearance: button) {
+  .appearance-button {
+    -moz-appearance: button;
+    appearance: button;
+  }
+}
+
+/* Ẩn nút tăng/giảm trên các trình duyệt khác nhau */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+@layer utilities {
+  .inputBox {
+    @apply relative flex flex-col;
+  }
+  .inputTag {
+    @apply bg-transparent border border-slate-500 p-3 rounded-md outline-none text-teal-400 uppercase;
+  }
+
+  .inputTag:valid,
+  .inputTag:focus {
+    @apply border-teal-400;
+  }
+  .inputTagBug {
+    @apply border-rose-400 border outline-none p-3 rounded-md text-rose-500 uppercase;
+  }
+  .inputTagBug ~ span {
+    @apply absolute text-rose-500 p-[12px] h-full rounded-sm uppercase tracking-[3px] pointer-events-none duration-700;
+  }
+  .inputTag ~ span {
+    @apply absolute text-slate-500 p-[12px] h-full rounded-sm uppercase tracking-[3px] pointer-events-none duration-700;
+  }
+  .inputTagBug:valid ~ span,
+  .inputTagBug:focus ~ span {
+    @apply text-white transform translate-x-[17px] h-fit rounded-sm translate-y-[-10px] text-[13px] py-0 bg-rose-400 tracking-[3px];
+  }
+  .inputExist {
+    @apply border-teal-400 bg-transparent border p-3 rounded-md outline-none text-teal-400 uppercase;
+  }
+  .inputExist ~ span {
+    @apply text-white absolute p-[12px] uppercase tracking-[3px] pointer-events-none duration-700 transform translate-x-[17px] h-fit rounded-sm translate-y-[-10px] text-[13px] py-0 bg-teal-400;
+  }
+  .inputTag:valid ~ span,
+  .inputTag:focus ~ span {
+    @apply text-white transform translate-x-[20px] h-fit rounded-sm translate-y-[-10px] text-[13px] py-0 bg-teal-400 tracking-[3px];
+  }
+}
+
+@layer utilities {
+  .boxLogRes {
+    @apply relative tracking-[3px] flex w-full h-10 font-semibold gap-x-5 whitespace-nowrap;
+  }
+
+  .boxLogRes .styleLogin:active {
+    @apply border-cyan-500 bg-orange-300;
+  }
+  .boxLogRes .styleLogin {
+    @apply w-full p-2 text-center text-white transition-all duration-200 bg-orange-500 border rounded-md;
+  }
+  .boxLogRes .styleRes {
+    @apply bg-black border flex w-fit p-2 text-center text-white rounded-md;
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 100px;
+  }
+}
+
+.Typewriter {
+  display: inline-block;
+}
+.Typewriter p {
+  text-transform: uppercase;
+  font-size: 1em;
+  letter-spacing: 10px;
+  font-family: monospace;
+  border-right: 5px solid;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  color: rgb(255, 255, 255);
+  animation: typing 3s steps(9), cursor 0.5s step-end infinite alternate;
+}
+.Typewriterr {
+  display: inline-block;
+}
+.Typewriterr p {
+  text-transform: uppercase;
+  font-size: 1em;
+  letter-spacing: 10px;
+  font-family: monospace;
+  border-right: 5px solid;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  color: rgb(255, 255, 255);
+  animation: typing 3s steps(9), cursor 0.5s step-end infinite alternate;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+}
+@keyframes cursor {
+  50% {
+    border-color: transparent;
+  }
+}
+
+table {
+  border-collapse: collapse; /* Gộp viền ô */
+  width: 100%; /* Chiếm toàn bộ chiều rộng */
+}
+th,
+td {
+  border: 1px solid white; /* Viền cho ô */
+  padding: 8px; /* Khoảng cách bên trong ô */
+  text-align: left; /* Canh trái nội dung */
+}
+
+.page-not-found-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background: url("https://wallpapercave.com/wp/6SLzBEY.jpg") no-repeat center
+    center;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.page-not-found {
+  text-align: center;
+  color: white;
+}
+
+.page-not-found h1 {
+  font-size: 10rem;
+  text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+.page-not-found h2 {
+  font-size: 3rem;
+  margin-top: -20px;
+}
+
+.page-not-found h3 {
+  font-size: 1.5rem;
+}
+
+.torch-page-not-find {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.9);
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+}

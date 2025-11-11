@@ -1,0 +1,361 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+.div-flex-adjust-justify-between {
+  @apply flex flex-row items-center justify-between;
+}
+.styleLogin_btnGoogleFace {
+  @apply w-full p-2 mt-4 font-semibold text-center border-2 rounded-md h-fit border-cyan-500 text-cyan-400;
+}
+.center {
+  @apply flex items-center justify-center;
+}
+.optionWhenLoginSuccess {
+  @apply h-[30%] w-full font-semibold hover:bg-sky-50;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+.full-screen-component {
+  width: 100vw;
+  height: 100vh;
+}
+
+@layer utilities {
+  .inputBox {
+    @apply relative flex flex-col;
+  }
+  .inputTag {
+    @apply bg-transparent border border-slate-500 p-3 rounded-md outline-none text-teal-400;
+  }
+
+  .inputTag:valid,
+  .inputTag:focus {
+    @apply border-teal-400;
+  }
+  .inputTagBug {
+    @apply border-rose-400 border outline-none p-3 rounded-md text-rose-500;
+  }
+  .inputTagBug ~ span {
+    @apply absolute text-rose-500 p-[12px] h-full rounded-sm uppercase tracking-[3px] pointer-events-none duration-700;
+  }
+  .inputTag ~ span {
+    @apply absolute text-slate-500 p-[12px] h-full rounded-sm uppercase tracking-[3px] pointer-events-none duration-700;
+  }
+  .inputTagBug:valid ~ span,
+  .inputTagBug:focus ~ span {
+    @apply text-white transform translate-x-[17px] h-fit rounded-sm translate-y-[-10px] text-[13px] py-0 bg-rose-400 tracking-[3px];
+  }
+  .inputExist {
+    @apply border-teal-400 bg-transparent border p-3 rounded-md outline-none text-teal-400 uppercase;
+  }
+  .inputExist ~ span {
+    @apply text-white absolute p-[12px] uppercase tracking-[3px] pointer-events-none duration-700 transform translate-x-[17px] h-fit rounded-sm translate-y-[-10px] text-[13px] py-0 bg-teal-400;
+  }
+  .inputTag:valid ~ span,
+  .inputTag:focus ~ span {
+    @apply text-white transform translate-x-[20px] h-fit rounded-sm translate-y-[-10px] text-[13px] py-0 bg-teal-400 tracking-[3px];
+  }
+}
+
+header {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 70px;
+
+  @media screen and (max-width: 768px) {
+    height: fit-content;
+  }
+  background: #ffffff;
+  padding: 8px;
+  transition: 0.5s;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header ul {
+  display: flex;
+}
+
+header ul li {
+  list-style: none;
+}
+
+header ul li button {
+  position: relative;
+  color: #333;
+  padding: 5px 20px;
+  font-size: 1.1em;
+  font-family: bold;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  transition: 0.5s;
+}
+
+.icon ul li button {
+  color: #fff;
+}
+.icon ul li {
+  animation-duration: 3s;
+  color: #fff;
+  transition: all 0.5s;
+}
+
+.icon {
+  background: #444;
+}
+
+.icon div {
+  color: #fff;
+}
+
+.logo-header {
+  position: relative;
+  font-size: 1.8em;
+  @media screen and (max-width: 768px) {
+    font-size: 1em;
+  }
+  font-weight: bold;
+  color: #333;
+  justify-content: center;
+  overflow: hidden;
+}
+.logo-header span,
+.logo-header img {
+  transition: 0.5s;
+  display: block;
+}
+.logo-header img {
+  position: absolute;
+  transform: translateY(-110px);
+}
+
+.icon .logo-header img {
+  @media screen and (max-width: 767px) {
+    transform: translateY(-22px);
+  }
+  @media screen and (min-width: 768px) {
+    transform: translateY(-11px);
+  }
+}
+.icon .logo-header span {
+  transform: translateY(37px);
+}
+
+.Typewriter {
+  display: inline-block;
+  width: 100%;
+}
+.Typewriter p {
+  text-transform: uppercase;
+  letter-spacing: 7px;
+  font-family: monospace;
+  border-right: 5px solid;
+  width: 100%;
+  animation:
+    typing 3s steps(10),
+    cursor 0.5s step-end infinite alternate;
+}
+.Typewriterr {
+  display: inline-block;
+}
+.Typewriterr p {
+  text-transform: uppercase;
+  font-size: 1em;
+  letter-spacing: 10px;
+  font-family: monospace;
+  border-right: 5px solid;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  color: rgb(255, 255, 255);
+  animation:
+    typing 3s steps(9),
+    cursor 0.5s step-end infinite alternate;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+}
+@keyframes cursor {
+  50% {
+    border-color: transparent;
+  }
+}
+
+.customCheckBox {
+  @apply appearance-none w-5 h-5 bg-gray-300 border-2 border-gray-400 rounded-md 
+             checked:bg-blue-500 checked:border-blue-500
+             checked:before:content-['✈'] checked:before:text-white checked:before:text-xs checked:before:flex checked:before:items-center checked:before:justify-center;
+}
+
+@layer utilities {
+  .boxLogRes {
+    @apply relative tracking-[3px] flex w-full h-fit font-semibold gap-x-5 whitespace-nowrap;
+  }
+
+  .boxLogRes .styleLogin:active {
+    @apply border-cyan-500 bg-orange-300;
+  }
+  .boxLogRes .styleLogin {
+    @apply w-full h-fit text-center text-white transition-all duration-200 bg-orange-500 border rounded-md;
+  }
+  .boxLogRes .styleRes {
+    @apply bg-black border flex w-fit h-fit text-center text-white rounded-md;
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 100px;
+  }
+}
+:root {
+  --fc-border-color: black;
+  --fc-daygrid-event-dot-width: 5px;
+}
+.fc-dayGridMonth-view {
+  font-size: 0.9em; /* Giảm kích thước font chữ */
+}
+.fc-daygrid-day {
+  width: 150px; /* Chiều rộng của ô ngày */
+  height: 20px; /* Chiều cao của ô ngày */
+}
+.fc-event {
+  white-space: normal; /* Cho phép xuống dòng */
+  max-width: 200px; /* Giới hạn chiều rộng */
+}
+.fc-toolbar-title {
+  font-size: 1.5em; /* Kích thước tiêu đề */
+}
+.fc-button {
+  padding: 5px 10px; /* Kích thước nút */
+  font-size: 0.8em; /* Kích thước chữ trên nút */
+} /* Điều chỉnh kích thước chấm sự kiện trong các ô ngày */
+.fc-daygrid-event-dot {
+  width: var(--fc-daygrid-event-dot-width);
+  height: var(--fc-daygrid-event-dot-width);
+}
+/* Điều chỉnh kích thước của div cha */
+.fc-view-harness {
+  width: 1200px; /* Chiều rộng */
+  height: 100px; /* Chiều cao */
+  /* Thêm thanh cuộn nếu nội dung vượt quá kích thước */
+}
+.fc-header-toolbar {
+  width: 1200px; /* Chiều rộng */
+  height: fit-content; /* Chiều cao */
+  /* Thêm thanh cuộn nếu nội dung vượt quá kích thước */
+}
+.fc-media-screen {
+  width: 1200px; /* Chiều rộng */
+  height: fit-content; /* Chiều cao */ /* Thêm thanh cuộn nếu nội dung vượt quá kích thước */
+}
+/* Điều chỉnh viền của các ô ngày */
+.fc-daygrid-day {
+  border: 1px solid var(--fc-border-color); /* Viền cho ô ngày */
+}
+/* @import "https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"; */
+
+.resize-x {
+  resize: horizontal; /* Cho phép kéo dài theo chiều ngang */
+}
+
+@layer utilities {
+  .scrollbar {
+    @apply scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-white;
+  }
+}
+
+.rounded-scrollbar {
+  overflow-y: auto;
+  border-radius: 8px; /* Bo tròn góc phần tử */
+  scrollbar-width: thin; /* Firefox: thanh cuộn mỏng */
+  scrollbar-color: #888 #f1f1f1; /* Firefox: màu thumb và track */
+}
+
+/* Webkit-based browsers (Chrome, Edge) */
+.rounded-scrollbar::-webkit-scrollbar {
+  width: 8px; /* Độ rộng thanh cuộn */
+}
+
+.rounded-scrollbar::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Màu nền track */
+  border-radius: 8px; /* Bo tròn góc track */
+  margin: 8px; /* Tăng margin để tránh cắt góc */
+  box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.1); /* Thêm bóng nhẹ để rõ ràng hơn */
+}
+
+.rounded-scrollbar::-webkit-scrollbar-thumb {
+  background: #888; /* Màu thumb */
+  border-radius: 8px; /* Bo tròn góc thumb */
+  border: 1px solid #f1f1f1; /* Thêm viền để tăng độ rõ nét */
+}
+
+.rounded-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Màu khi hover */
+}
+
+.date-picker-wrapper {
+  position: relative;
+  z-index: 1000;
+}
+
+.date-picker-popper {
+  z-index: 1000 !important;
+}
+
+.react-datepicker-popper {
+  z-index: 1000 !important;
+}
+
+/* Ngăn chặn scroll khi DatePicker mở */
+.react-datepicker-popper[data-placement^="top"] {
+  margin-bottom: 8px;
+}
+
+/* Đảm bảo DatePicker không bị ảnh hưởng bởi overflow của parent */
+.react-datepicker-wrapper,
+.react-datepicker__input-container {
+  position: static !important;
+}
+
+.react-chatbot-kit-chat-container {
+  @apply w-80 !important;
+}
+@media (max-width: 767px) {
+  .react-chatbot-kit-chat-container {
+    @apply w-72 !important;
+  }
+}

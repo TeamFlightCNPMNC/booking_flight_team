@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://travfruitv4.vercel.app/site-map.xml
