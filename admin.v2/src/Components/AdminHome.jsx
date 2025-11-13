@@ -24,13 +24,13 @@ export default function AdminHome({ type }) {
   });
 
   const [isDropdownFlight, setIsDropdownFlight] = useState(false);
-  
+
   return (
     <>
       <div className="flex justify-between p-5 w-full h-screen bg-[url('https://ik.imagekit.io/tvlk/image/imageResource/2023/09/27/1695776209619-17a750c3f514f7a8cccde2d0976c902a.png')] bg-center bg-no-repeat bg-cover overflow-hidden">
         <div className="flex flex-col font-medium w-[17%] rounded-lg h-fit overflow-hidden font-mono">
           <p className="p-4 border-b">Quản lý</p>
-          
+
           <Link to="/home" className="p-4 hover:opacity-80">
             Tài Khoản người dùng
           </Link>
@@ -39,7 +39,8 @@ export default function AdminHome({ type }) {
             <div className="flex items-center justify-between p-4">
               <Link
                 to="/home/chuyenbay"
-                className="hover:opacity-80 whitespace-nowrap">
+                className="hover:opacity-80 whitespace-nowrap"
+              >
                 Chuyến bay
               </Link>
 
@@ -59,12 +60,14 @@ export default function AdminHome({ type }) {
               <div className="flex flex-col gap-y-3">
                 <Link
                   to="/home/chuyenbay/add"
-                  className="hover:opacity-80 whitespace-nowrap ml-8 text-sm">
+                  className="hover:opacity-80 whitespace-nowrap ml-8 text-sm"
+                >
                   Thêm chuyến bay
                 </Link>
                 <Link
                   to="/home/chuyenbay/create3month"
-                  className="hover:opacity-80 whitespace-nowrap ml-8 text-sm">
+                  className="hover:opacity-80 whitespace-nowrap ml-8 text-sm"
+                >
                   Tạo cho 3 tháng
                 </Link>
               </div>
@@ -78,22 +81,24 @@ export default function AdminHome({ type }) {
           {/* ============================== */}
 
           <Link to="/home/payment" className="p-4 hover:opacity-80">
-            Payment
+            Giao dịch
           </Link>
 
-          <Link
+          {/* <Link
             to="https://travfruitv4.vercel.app/"
             className="p-4 hover:opacity-80">
-            Go to client
-          </Link>
+            Qua trang khách
+          </Link> */}
           <Link
-            to="https://github.com/thanhlongtruong/travFruit"
-            className="p-4 hover:opacity-80">
-            Go to Github
+            to="https://github.com/TeamFlightCNPMNC/booking_flight_team/"
+            className="p-4 hover:opacity-80"
+          >
+            Xem Github
           </Link>
           <button
             onClick={mututionLogout.mutate}
-            className="p-4 hover:opacity-80 text-left">
+            className="p-4 hover:opacity-80 text-left"
+          >
             {mututionLogout.isPending ? (
               <l-bouncy size="30" speed="1.75" color="white" />
             ) : (
@@ -104,7 +109,7 @@ export default function AdminHome({ type }) {
             <CatchErrorAPI error={mututionLogout.error} />
           )}
         </div>
-        
+
         <div className="w-[81%] overflow-auto">
           {type === "accountuser" ? (
             <AccountUsers />

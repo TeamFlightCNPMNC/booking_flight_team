@@ -304,9 +304,11 @@ function InterFaceLogin({ registerTrue = false }) {
   return (
     <>
       <div
-        className={`${!registerTrue ? "fixed items-center h-full inset-0 z-[999] p-5 bg-zinc-800/50" : `items-start h-fit p-5 md:p-0`} flex justify-center w-full overflow-hidden`}>
+        className={`${!registerTrue ? "fixed items-center h-full inset-0 z-[999] p-5 bg-zinc-800/50" : `items-start h-fit p-5 md:p-0`} flex justify-center w-full overflow-hidden`}
+      >
         <div
-          className={`${!addSVG[0] ? "h-fit" : "h-full"} ${!registerTrue ? "w-full m-auto md:w-[370px]" : "w-full"} overflow-y-auto rounded-md scroll-smooth bg-[#444] no-scrollbar`}>
+          className={`${!addSVG[0] ? "h-fit" : "h-full"} ${!registerTrue ? "w-full m-auto md:w-[370px]" : "w-full"} overflow-y-auto rounded-md scroll-smooth bg-[#444] no-scrollbar`}
+        >
           <div className="flex items-start justify-between w-full font-medium h-fit text-slate-700">
             <div
               className={"Typewriter p-5 text-white"}
@@ -314,7 +316,8 @@ function InterFaceLogin({ registerTrue = false }) {
                 ? registerLogin
                 : registerTrue
                   ? registerUpdate
-                  : registerRegister)("InternalServerError")}>
+                  : registerRegister)("InternalServerError")}
+            >
               <p className="text-base truncate">
                 {errorsRegister.InternalServerError
                   ? errorsRegister.InternalServerError.message
@@ -329,22 +332,24 @@ function InterFaceLogin({ registerTrue = false }) {
             </div>
 
             {!registerTrue && (
-                <div
-                  className="w-fit cursor-pointer bg-white rounded-bl-lg"
-                  onClick={() => setShowInterfaceLogin(false)}>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth="2"
-                    className="size-7 stroke-rose-600">
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M6 18 18 6M6 6l12 12"
-                    />
-                  </svg>
-                </div>
+              <div
+                className="w-fit cursor-pointer bg-white rounded-bl-lg"
+                onClick={() => setShowInterfaceLogin(false)}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth="2"
+                  className="size-7 stroke-rose-600"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M6 18 18 6M6 6l12 12"
+                  />
+                </svg>
+              </div>
             )}
           </div>
 
@@ -357,7 +362,8 @@ function InterFaceLogin({ registerTrue = false }) {
                 : !addSVG[0]
                   ? handleSubmitLogin(submitLogin)
                   : handleSubmitRegister(submitRegister)
-            }>
+            }
+          >
             {!addSVG[0] ? (
               <>
                 <div className="w-full mb-6 inputBox">
@@ -382,7 +388,7 @@ function InterFaceLogin({ registerTrue = false }) {
                   <span className={`spanTag`}>
                     {errorsLogin.phoneLogin
                       ? errorsLogin.phoneLogin.message
-                      : "Your phone"}
+                      : "Số điện thoại"}
                   </span>
                 </div>
 
@@ -398,7 +404,7 @@ function InterFaceLogin({ registerTrue = false }) {
                   <span className={`spanTag`}>
                     {errorsLogin.passwordLogin
                       ? errorsLogin.passwordLogin.message
-                      : "Your Password"}
+                      : "Mật khẩu"}
                   </span>
                 </div>
               </>
@@ -406,9 +412,11 @@ function InterFaceLogin({ registerTrue = false }) {
               <>
                 <>
                   <div
-                    className={`flex justify-between  ${registerTrue ? "md:flex-row flex-col" : "flex-col"}`}>
+                    className={`flex justify-between  ${registerTrue ? "md:flex-row flex-col" : "flex-col"}`}
+                  >
                     <div
-                      className={`mb-6 inputBox ${registerTrue ? "md:w-[50%] w-full" : "w-full"}`}>
+                      className={`mb-6 inputBox ${registerTrue ? "md:w-[50%] w-full" : "w-full"}`}
+                    >
                       <input
                         className={`${errorsRegister.fullName ? "inputTagBug" : errorsUpdate.fullName ? "inputTagBug" : "inputTag"}`}
                         type="text"
@@ -438,11 +446,12 @@ function InterFaceLogin({ registerTrue = false }) {
                           ? errorsRegister.fullName.message
                           : errorsUpdate.fullName
                             ? errorsUpdate.fullName.message
-                            : "FULL NAME"}
+                            : "HỌ TÊN"}
                       </span>
                     </div>
                     <div
-                      className={`mb-6 inputBox ${registerTrue ? "md:w-[40%] w-full" : "w-full"}`}>
+                      className={`mb-6 inputBox ${registerTrue ? "md:w-[40%] w-full" : "w-full"}`}
+                    >
                       <input
                         className={`${errorsRegister.phone ? "inputTagBug" : errorsUpdate.phone ? "inputTagBug" : "inputTag"}`}
                         type="number"
@@ -469,16 +478,18 @@ function InterFaceLogin({ registerTrue = false }) {
                           ? errorsRegister.phone.message
                           : errorsUpdate.phone
                             ? errorsUpdate.phone.message
-                            : "Your phone"}
+                            : "Số điện thoại"}
                       </span>
                     </div>
                   </div>
                 </>
 
                 <div
-                  className={`flex justify-between  ${registerTrue ? "md:flex-row flex-col" : "flex-col"}`}>
+                  className={`flex justify-between  ${registerTrue ? "md:flex-row flex-col" : "flex-col"}`}
+                >
                   <div
-                    className={`mb-6 inputBox ${registerTrue ? "md:w-[40%] w-full" : "w-full"}`}>
+                    className={`mb-6 inputBox ${registerTrue ? "md:w-[40%] w-full" : "w-full"}`}
+                  >
                     <input
                       className={`${errorsRegister.gender ? "inputTagBug" : errorsUpdate.gender ? "inputTagBug" : "inputTag"}`}
                       type="text"
@@ -517,7 +528,8 @@ function InterFaceLogin({ registerTrue = false }) {
                     </span>
                   </div>
                   <div
-                    className={`mb-6 inputBox ${registerTrue ? "md:w-[50%] w-full" : "w-full"}`}>
+                    className={`mb-6 inputBox ${registerTrue ? "md:w-[50%] w-full" : "w-full"}`}
+                  >
                     <input
                       className={`w-full ${errorsRegister.birthday ? "inputTagBug" : errorsUpdate.birthday ? "inputTagBug" : "inputExist"}`}
                       type="date"
@@ -558,7 +570,7 @@ function InterFaceLogin({ registerTrue = false }) {
                         ? errorsRegister.birthday.message
                         : errorsUpdate.birthday
                           ? errorsUpdate.birthday.message
-                          : "birthday"}
+                          : "Ngày sinh"}
                     </span>
                   </div>
                 </div>
@@ -593,15 +605,17 @@ function InterFaceLogin({ registerTrue = false }) {
                       ? errorsRegister.email.message
                       : errorsUpdate.email
                         ? errorsUpdate.email.message
-                        : "Your Email"}
+                        : "Email"}
                   </span>
                 </div>
 
                 {(!registerTrue || showInputVerificationCode) && (
                   <div
-                    className={`flex justify-between items-start mb-6 flex-col`}>
+                    className={`flex justify-between items-start mb-6 flex-col`}
+                  >
                     <div
-                      className={`w-full inputBox ${registerTrue ? "w-full" : "w-full"}`}>
+                      className={`w-full inputBox ${registerTrue ? "w-full" : "w-full"}`}
+                    >
                       <input
                         className={`${errorsRegister.verificationCode ? "inputTagBug" : errorsUpdate.verificationCode ? "inputTagBug" : "inputTag"}`}
                         type="number"
@@ -638,7 +652,8 @@ function InterFaceLogin({ registerTrue = false }) {
                         }
                         handleSendVerificationCode();
                       }}
-                      className="w-fit p-1 border-teal-400 hover:border-teal-500 hover:text-teal-500 font-medium font-mono text-white flex items-center gap-2">
+                      className="w-fit p-1 border-teal-400 hover:border-teal-500 hover:text-teal-500 font-medium font-mono text-white flex items-center gap-2"
+                    >
                       Gửi mã tới email
                       {mutationSendVerificationCodeEmail.isPending && (
                         <l-squircle
@@ -652,7 +667,8 @@ function InterFaceLogin({ registerTrue = false }) {
                       )}
                     </button>
                     <p
-                      className={`text-xs ${mutationSendVerificationCodeEmail.status === "success" ? "text-teal-500" : mutationSendVerificationCodeEmail.status === "error" ? "text-red-500" : ""}`}>
+                      className={`text-xs ${mutationSendVerificationCodeEmail.status === "success" ? "text-teal-500" : mutationSendVerificationCodeEmail.status === "error" ? "text-red-500" : ""}`}
+                    >
                       {showMessageVerificationCode}
                     </p>
                   </div>
@@ -663,7 +679,8 @@ function InterFaceLogin({ registerTrue = false }) {
                     className={`p-2 text-xs md:text-base border-teal-400 text-teal-400 mb-6 transition-all duration-200 border rounded-md font-semibold hover:text-white`}
                     ref={refUpdate}
                     type="button"
-                    onClick={() => setShowChoosePassword(!showChoosePassword)}>
+                    onClick={() => setShowChoosePassword(!showChoosePassword)}
+                  >
                     <p className="flex justify-center uppercase">
                       Đổi mật khẩu
                     </p>
@@ -688,7 +705,7 @@ function InterFaceLogin({ registerTrue = false }) {
                     <span className={`spanTag`}>
                       {errorsRegister.password
                         ? errorsRegister.password.message
-                        : "password"}
+                        : "Mật khẩu"}
                     </span>
                   </div>
                 ) : (
@@ -743,7 +760,8 @@ function InterFaceLogin({ registerTrue = false }) {
                   <button
                     className={`styleLogin flex justify-center p-2`}
                     type="submit"
-                    ref={refUpdate}>
+                    ref={refUpdate}
+                  >
                     {mutationUpdate.isPending ? (
                       <>
                         <l-bouncy size="30" speed="1.75" color="white" />
@@ -762,7 +780,8 @@ function InterFaceLogin({ registerTrue = false }) {
                     ref={refLogin}
                     className={`styleLogin`}
                     type="submit"
-                    onClick={() => handleSwapClasses("Log")}>
+                    onClick={() => handleSwapClasses("Log")}
+                  >
                     <p className="h-fit p-2 text-xs md:text-base flex justify-center items-center uppercase">
                       {addSVG[0] && (
                         <svg
@@ -771,7 +790,8 @@ function InterFaceLogin({ registerTrue = false }) {
                           viewBox="0 0 24 24"
                           strokeWidth="1.5"
                           stroke="currentColor"
-                          className="size-4 md:size-6 animate-bounce-hozi">
+                          className="size-4 md:size-6 animate-bounce-hozi"
+                        >
                           <path
                             strokeLinecap="round"
                             strokeLinejoin="round"
@@ -790,7 +810,8 @@ function InterFaceLogin({ registerTrue = false }) {
                     ref={refRegister}
                     className={`styleRes`}
                     type="submit"
-                    onClick={() => handleSwapClasses("Res")}>
+                    onClick={() => handleSwapClasses("Res")}
+                  >
                     <p className="h-fit p-2 text-xs md:text-base flex justify-center items-center uppercase">
                       {mutationRegister.isPending ? (
                         <l-bouncy size="35" speed="1.75" color="white" />
@@ -805,7 +826,8 @@ function InterFaceLogin({ registerTrue = false }) {
                           viewBox="0 0 24 24"
                           strokeWidth="1.5"
                           stroke="currentColor"
-                          className="size-4 md:size-6 animate-bounce-hozi">
+                          className="size-4 md:size-6 animate-bounce-hozi"
+                        >
                           <path
                             strokeLinecap="round"
                             strokeLinejoin="round"

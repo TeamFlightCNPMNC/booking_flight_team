@@ -9,18 +9,17 @@ export default function AdjustQuantity({
   setSelectedDepartureAirport,
   setPassengerChooseDeparture,
   objReturn,
+  countDepartureFlights,
+  countReturnFlights,
 }) {
   const {
     handleMake_a_Reservation,
-    isShowInterfaceLogin,
     handleReplacePriceAirport,
     setHideDetailItemFlight,
     setOpenAdjustQuantity,
     bayMotChieu,
     editQuantityPassenger,
   } = useContext(CONTEXT);
-
-  console.log(objDeparture);
 
   useEffect(() => {
     const element = document.getElementById("return-ticket");
@@ -155,7 +154,7 @@ export default function AdjustQuantity({
     }
   };
 
-  const handleCheckQuantityTickets = () => {
+  const handleCheckQuantityTickets = ({ state }) => {
     if (
       quantityTicketsOfAdult[0] + quantityTicketsOfAdult[1] !==
       objDeparture[1][0]
@@ -216,6 +215,7 @@ export default function AdjustQuantity({
       );
       return;
     }
+
     setPassengerChooseDeparture(true);
     setOpenAdjustQuantity(false);
     setHideDetailItemFlight(true);
@@ -224,7 +224,8 @@ export default function AdjustQuantity({
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
     }
-    if (bayMotChieu) {
+
+    if (state === "withoutReturnflight" || bayMotChieu) {
       handleMake_a_Reservation({
         airportDeparture: objDeparture[0],
         quantityTicketsDeparture: {
@@ -232,8 +233,9 @@ export default function AdjustQuantity({
           quantityTicketsOfChild: quantityTicketsOfChild,
           quantityTicketsOfBaby: editQuantityPassenger[2],
         },
+        oneWayFlight: true,
       });
-    } else if (!bayMotChieu && objReturn) {
+    } else if (state === "normal" && (!bayMotChieu && objReturn)) {
       handleMake_a_Reservation({
         airportDeparture: objDeparture[0],
         airportReturn: objReturn[0],
@@ -247,6 +249,7 @@ export default function AdjustQuantity({
           quantityTicketsOfChild: quantityTicketsOfChild,
           quantityTicketsOfBaby: editQuantityPassenger[2],
         },
+        oneWayFlight: false,
       });
     }
   };
@@ -278,15 +281,15 @@ export default function AdjustQuantity({
                 </p>
 
                 <p className="p-[2%] rounded-2xl text-base text-zinc-400 font-semibold select-none">
-                  Giá vé hiện tại đang được áp dụng giá vé thường <br />{" "}
+                  Giá vé hiện tại đang được áp dụng giá vé phổ thông <br />{" "}
                   <span className="text-[#FF5E1F]">
                     Số vé phổ thông còn lại :{" "}
-                    {(i === 0 ? objDeparture : objReturn)[0].PhoThong}
+                    {(i === 0 ? objDeparture : objReturn)[0].soGhePhoThong}
                   </span>{" "}
                   <br />{" "}
                   <span className="text-[#FF5E1F]">
                     Số vé thương gia còn lại :{" "}
-                    {(i === 0 ? objDeparture : objReturn)[0].ThuongGia}
+                    {(i === 0 ? objDeparture : objReturn)[0].soGheThuongGia}
                   </span>
                 </p>
               </div>
@@ -313,14 +316,14 @@ export default function AdjustQuantity({
                   <div className="mb-3">
                     <div className="flex">
                       <p className="text-base font-semibold text-zinc-800">
-                        - Người lớn (x{objDeparture[1][0]}){" "}
+                        - Người lớn (x{objDeparture[1][0]}){"  "}
                       </p>
                       <div>
                         {(i === 0
                           ? quantityTicketsOfAdult
                           : quantityTicketsReturnAdult)[0] > 0 && (
                           <p className="text-base font-semibold text-red-600">
-                            -{" "}
+                            {" - "}
                             {new Intl.NumberFormat("vi-VN", {
                               style: "decimal",
                             }).format(
@@ -336,12 +339,14 @@ export default function AdjustQuantity({
                             }{" "}
                             (Phổ thông) -{" "}
                             {new Intl.NumberFormat("vi-VN").format(
-                              handleReplacePriceAirport(
-                                (i === 0 ? objDeparture : objReturn)[0].gia
-                              ) *
-                                (i === 0
-                                  ? quantityTicketsOfAdult
-                                  : quantityTicketsReturnAdult)[0]
+                              Math.floor(
+                                handleReplacePriceAirport(
+                                  (i === 0 ? objDeparture : objReturn)[0].gia
+                                ) *
+                                  (i === 0
+                                    ? quantityTicketsOfAdult
+                                    : quantityTicketsReturnAdult)[0]
+                              )
                             ) + " VND"}
                           </p>
                         )}
@@ -354,9 +359,11 @@ export default function AdjustQuantity({
                             {new Intl.NumberFormat("vi-VN", {
                               style: "decimal",
                             }).format(
-                              handleReplacePriceAirport(
-                                (i === 0 ? objDeparture : objReturn)[0].gia
-                              ) * 1.5
+                              Math.floor(
+                                handleReplacePriceAirport(
+                                  (i === 0 ? objDeparture : objReturn)[0].gia
+                                ) * 1.5
+                              )
                             )}{" "}
                             x{" "}
                             {
@@ -366,13 +373,15 @@ export default function AdjustQuantity({
                             }{" "}
                             (Thương gia) -{" "}
                             {new Intl.NumberFormat("vi-VN").format(
-                              handleReplacePriceAirport(
-                                (i === 0 ? objDeparture : objReturn)[0].gia
-                              ) *
-                                1.5 *
-                                (i === 0
-                                  ? quantityTicketsOfAdult
-                                  : quantityTicketsReturnAdult)[1]
+                              Math.floor(
+                                handleReplacePriceAirport(
+                                  (i === 0 ? objDeparture : objReturn)[0].gia
+                                ) *
+                                  1.5 *
+                                  (i === 0
+                                    ? quantityTicketsOfAdult
+                                    : quantityTicketsReturnAdult)[1]
+                              )
                             ) + " VND"}
                           </p>
                         )}
@@ -453,9 +462,11 @@ export default function AdjustQuantity({
                             {new Intl.NumberFormat("vi-VN", {
                               style: "decimal",
                             }).format(
-                              handleReplacePriceAirport(
-                                (i === 0 ? objDeparture : objReturn)[0].gia
-                              ) * 0.75
+                              Math.floor(
+                                handleReplacePriceAirport(
+                                  (i === 0 ? objDeparture : objReturn)[0].gia
+                                ) * 0.75
+                              )
                             )}{" "}
                             x{" "}
                             {
@@ -465,13 +476,15 @@ export default function AdjustQuantity({
                             }{" "}
                             (Phổ thông) -{" "}
                             {new Intl.NumberFormat("vi-VN").format(
-                              handleReplacePriceAirport(
-                                (i === 0 ? objDeparture : objReturn)[0].gia
-                              ) *
-                                0.75 *
-                                (i === 0
-                                  ? quantityTicketsOfChild
-                                  : quantityTicketsReturnChild)[0]
+                              Math.floor(
+                                handleReplacePriceAirport(
+                                  (i === 0 ? objDeparture : objReturn)[0].gia
+                                ) *
+                                  0.75 *
+                                  (i === 0
+                                    ? quantityTicketsOfChild
+                                    : quantityTicketsReturnChild)[0]
+                              )
                             ) + " VND"}
                           </p>
                         )}
@@ -484,11 +497,13 @@ export default function AdjustQuantity({
                             {new Intl.NumberFormat("vi-VN", {
                               style: "decimal",
                             }).format(
-                              handleReplacePriceAirport(
-                                (i === 0 ? objDeparture : objReturn)[0].gia
-                              ) *
-                                0.75 *
-                                1.5
+                              Math.floor(
+                                handleReplacePriceAirport(
+                                  (i === 0 ? objDeparture : objReturn)[0].gia
+                                ) *
+                                  0.75 *
+                                  1.5
+                              )
                             )}{" "}
                             x{" "}
                             {
@@ -498,14 +513,16 @@ export default function AdjustQuantity({
                             }{" "}
                             (Thương gia) -{" "}
                             {new Intl.NumberFormat("vi-VN").format(
-                              handleReplacePriceAirport(
-                                (i === 0 ? objDeparture : objReturn)[0].gia
-                              ) *
-                                1.5 *
-                                0.75 *
-                                (i === 0
-                                  ? quantityTicketsOfChild
-                                  : quantityTicketsReturnChild)[1]
+                              Math.floor(
+                                handleReplacePriceAirport(
+                                  (i === 0 ? objDeparture : objReturn)[0].gia
+                                ) *
+                                  1.5 *
+                                  0.75 *
+                                  (i === 0
+                                    ? quantityTicketsOfChild
+                                    : quantityTicketsReturnChild)[1]
+                              )
                             ) + " VND"}
                           </p>
                         )}
@@ -627,19 +644,21 @@ export default function AdjustQuantity({
                         : ""}{" "}
                       <p className="text-xl font-bold text-[#FF5E1F]">
                         {new Intl.NumberFormat("vi-VN").format(
-                          handleReplacePriceAirport(
-                            (i === 0 ? objDeparture : objReturn)[0].gia
-                          ) *
-                            (i === 0
-                              ? quantityTicketsOfAdult
-                              : quantityTicketsReturnAdult)[0] +
+                          Math.floor(
                             handleReplacePriceAirport(
                               (i === 0 ? objDeparture : objReturn)[0].gia
                             ) *
-                              0.75 *
                               (i === 0
-                                ? quantityTicketsOfChild
-                                : quantityTicketsReturnChild)[0]
+                                ? quantityTicketsOfAdult
+                                : quantityTicketsReturnAdult)[0] +
+                              handleReplacePriceAirport(
+                                (i === 0 ? objDeparture : objReturn)[0].gia
+                              ) *
+                                0.75 *
+                                (i === 0
+                                  ? quantityTicketsOfChild
+                                  : quantityTicketsReturnChild)[0]
+                          )
                         )}{" "}
                         VND
                       </p>
@@ -684,21 +703,23 @@ export default function AdjustQuantity({
                         : ""}
                       <p className="text-xl font-bold text-[#FF5E1F]">
                         {new Intl.NumberFormat("vi-VN").format(
-                          handleReplacePriceAirport(
-                            (i === 0 ? objDeparture : objReturn)[0].gia
-                          ) *
-                            1.5 *
-                            (i === 0
-                              ? quantityTicketsOfAdult
-                              : quantityTicketsReturnAdult)[1] +
+                          Math.floor(
                             handleReplacePriceAirport(
                               (i === 0 ? objDeparture : objReturn)[0].gia
                             ) *
-                              0.75 *
                               1.5 *
                               (i === 0
-                                ? quantityTicketsOfChild
-                                : quantityTicketsReturnChild)[1]
+                                ? quantityTicketsOfAdult
+                                : quantityTicketsReturnAdult)[1] +
+                              handleReplacePriceAirport(
+                                (i === 0 ? objDeparture : objReturn)[0].gia
+                              ) *
+                                0.75 *
+                                1.5 *
+                                (i === 0
+                                  ? quantityTicketsOfChild
+                                  : quantityTicketsReturnChild)[1]
+                          )
                         )}{" "}
                         VND
                       </p>
@@ -712,34 +733,36 @@ export default function AdjustQuantity({
                       : "Tổng số tiền cần than toán cho chuyến bay khứ hồi"}
                     <p className="text-2xl font-bold text-[#FF5E1F]">
                       {new Intl.NumberFormat("vi-VN").format(
-                        handleReplacePriceAirport(
-                          (i === 0 ? objDeparture : objReturn)[0].gia
-                        ) *
-                          (i === 0
-                            ? quantityTicketsOfAdult
-                            : quantityTicketsReturnAdult)[0] +
+                        Math.floor(
                           handleReplacePriceAirport(
                             (i === 0 ? objDeparture : objReturn)[0].gia
                           ) *
-                            0.75 *
-                            (i === 0
-                              ? quantityTicketsOfChild
-                              : quantityTicketsReturnChild)[0] +
-                          (handleReplacePriceAirport(
-                            (i === 0 ? objDeparture : objReturn)[0].gia
-                          ) *
-                            1.5 *
                             (i === 0
                               ? quantityTicketsOfAdult
-                              : quantityTicketsReturnAdult)[1] +
+                              : quantityTicketsReturnAdult)[0] +
                             handleReplacePriceAirport(
                               (i === 0 ? objDeparture : objReturn)[0].gia
                             ) *
                               0.75 *
-                              1.5 *
                               (i === 0
                                 ? quantityTicketsOfChild
-                                : quantityTicketsReturnChild)[1])
+                                : quantityTicketsReturnChild)[0] +
+                            (handleReplacePriceAirport(
+                              (i === 0 ? objDeparture : objReturn)[0].gia
+                            ) *
+                              1.5 *
+                              (i === 0
+                                ? quantityTicketsOfAdult
+                                : quantityTicketsReturnAdult)[1] +
+                              handleReplacePriceAirport(
+                                (i === 0 ? objDeparture : objReturn)[0].gia
+                              ) *
+                                0.75 *
+                                1.5 *
+                                (i === 0
+                                  ? quantityTicketsOfChild
+                                  : quantityTicketsReturnChild)[1])
+                        )
                       )}{" "}
                       VND
                     </p>
@@ -748,10 +771,39 @@ export default function AdjustQuantity({
               </div>
             </>
           ))}
+
+          {!bayMotChieu && countReturnFlights <= 0 && (
+            <>
+              <p className="text-base font-semibold mt-5 text-zinc-800">
+                Không có chuyến bay khứ hồi nào, bạn có thể{" "}
+                <span className="text-[#FF5E1F]">
+                  chọn "Xác nhận chuyến bay đi" để bỏ qua chuyến bay khứ hồi
+                </span>
+                {"  hoặc "}
+                <span className="text-[#FF5E1F]">
+                  chọn "Tiến hành đặt" để tìm chuyến bay khác
+                </span>
+              </p>
+              <button
+                type="button"
+                onClick={() =>
+                  !isStateShowNotiGiaVe &&
+                  handleCheckQuantityTickets({ state: "withoutReturnflight" })
+                }
+                className={` ${isStateShowNotiGiaVe ? "bg-gray-500" : "bg-[#FF5E1F]"} flex justify-center items-center font-bold text-white size-fit cursor-pointer p-3 rounded-lg float-right`}
+              >
+                Xác nhận chuyến bay đi
+              </button>
+            </>
+          )}
+
           <button
             type="button"
-            onClick={!isStateShowNotiGiaVe && handleCheckQuantityTickets}
-            className={` ${isStateShowNotiGiaVe ? "bg-gray-500" : "bg-[#FF5E1F]"} flex justify-center items-center font-bold text-white size-fit cursor-pointer p-3 rounded-lg float-right`}
+            onClick={() =>
+              !isStateShowNotiGiaVe &&
+              handleCheckQuantityTickets({ state: "normal" })
+            }
+            className={` ${isStateShowNotiGiaVe ? "bg-gray-500" : "bg-[#FF5E1F]"} mr-5 flex justify-center items-center font-bold text-white size-fit cursor-pointer p-3 rounded-lg float-right`}
           >
             {bayMotChieu ? "Xác nhận chuyến bay đi" : "Tiến hành đặt"}
           </button>

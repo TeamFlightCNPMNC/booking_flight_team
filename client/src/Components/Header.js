@@ -59,8 +59,9 @@ function Header() {
               <li>
                 <Link
                   to="/about"
-                  className="font-semibold uppercase text-xs tracking-wider md:text-base lg:text-lg cursor-pointer">
-                  About
+                  className="font-semibold uppercase text-xs tracking-wider md:text-base lg:text-lg cursor-pointer"
+                >
+                  Giới thiệu
                 </Link>
               </li>
             </>
@@ -73,7 +74,8 @@ function Header() {
                 <>
                   <li
                     className="font-semibold uppercase text-xs tracking-wider md:text-base lg:text-lg cursor-pointer"
-                    onClick={() => setShowChatbot(!isShowChatbot)}>
+                    onClick={() => setShowChatbot(!isShowChatbot)}
+                  >
                     Trợ lý
                   </li>
                 </>
@@ -86,14 +88,16 @@ function Header() {
             <li className="--i:0">
               <button
                 className={`div-flex-adjust-justify-between gap-1 rounded-md border-2 p-[6px] hover:border-[#0194f3] hover:text-white`}
-                onClick={() => setShowInterfaceLogin(true)}>
+                onClick={() => setShowInterfaceLogin(true)}
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="#0194f3"
                   viewBox="0 0 24 24"
                   strokeWidth="1.5"
                   stroke="#0194f3"
-                  className="size-5">
+                  className="size-5"
+                >
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
