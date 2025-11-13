@@ -4,7 +4,7 @@ import AdminHome from "./Components/AdminHome";
 import Page404 from "./Components/Page404";
 import { ErrorBoundary } from "react-error-boundary";
 import FallbackComponent from "./Components/FallbackComponent";
-//
+
 function App() {
   return (
     <ErrorBoundary FallbackComponent={FallbackComponent}>
@@ -23,6 +23,14 @@ function App() {
           element={<AdminHome type="create3month" />}
         />
         <Route path="/home/payment" element={<AdminHome type="payment" />} />
+
+        {/* ===== ROUTE THỐNG KÊ - ĐÚNG CÁCH ===== */}
+        <Route 
+          path="/home/statistics" 
+          element={<AdminHome type="statistics" />} 
+        />
+        {/* ====================================== */}
+
         <Route path="/" element={<AdminLogin />} />
         <Route path="*" element={<Page404 />} />
       </Routes>
