@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import AccountUsers from "./AccountUsers";
 import AdminChuyenBay from "./AdminChuyenBay";
 import AdminPayment from "./AdminPayment";
-import ThongKe from "../ThongKe/ThongKe"; // Import component Thống kê
 import { useMutation } from "@tanstack/react-query";
 import { Logout } from "./API/Account";
 import CatchErrorAPI from "./CatchErrorAPI";
@@ -11,7 +10,6 @@ import { ChevronDown, ChevronUp } from "lucide-react";
 import { useState } from "react";
 import AdminThemChuyenBay from "./AdminThemChuyenBay";
 import AdminCreateFlight3M from "./AdminCreateFlight3M";
-
 export default function AdminHome({ type }) {
   const naviLogin = useNavigate();
 
@@ -24,13 +22,11 @@ export default function AdminHome({ type }) {
   });
 
   const [isDropdownFlight, setIsDropdownFlight] = useState(false);
-  
   return (
     <>
       <div className="flex justify-between p-5 w-full h-screen bg-[url('https://ik.imagekit.io/tvlk/image/imageResource/2023/09/27/1695776209619-17a750c3f514f7a8cccde2d0976c902a.png')] bg-center bg-no-repeat bg-cover overflow-hidden">
-        <div className="flex flex-col font-medium w-[17%] rounded-lg h-fit overflow-hidden font-mono">
+        <div className="flex flex-col font-medium  w-[17%] rounded-lg h-fit overflow-hidden font-mono">
           <p className="p-4 border-b">Quản lý</p>
-          
           <Link to="/home" className="p-4 hover:opacity-80">
             Tài Khoản người dùng
           </Link>
@@ -71,12 +67,6 @@ export default function AdminHome({ type }) {
             )}
           </div>
 
-          {/* ===== THÊM LINK THỐNG KÊ ===== */}
-          <Link to="/home/statistics" className="p-4 hover:opacity-80">
-            Thống kê
-          </Link>
-          {/* ============================== */}
-
           <Link to="/home/payment" className="p-4 hover:opacity-80">
             Payment
           </Link>
@@ -104,7 +94,6 @@ export default function AdminHome({ type }) {
             <CatchErrorAPI error={mututionLogout.error} />
           )}
         </div>
-        
         <div className="w-[81%] overflow-auto">
           {type === "accountuser" ? (
             <AccountUsers />
@@ -116,8 +105,6 @@ export default function AdminHome({ type }) {
             <AdminCreateFlight3M />
           ) : type === "payment" ? (
             <AdminPayment />
-          ) : type === "statistics" ? ( // Thêm type mới
-            <ThongKe />
           ) : (
             <AccountUsers />
           )}
